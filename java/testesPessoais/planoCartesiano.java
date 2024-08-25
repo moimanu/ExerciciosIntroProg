@@ -3,22 +3,22 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void main (String[] args) {
-        Scanner t = new Scanner(System.in);
-        
-        int A, B, C, x, y, size = 30;
-        
-        System.out.println("Digite os coeficientes da função -> f(x)=Ax²+Bx+C");
+	public static void main (String[] args) {
+	        Scanner t = new Scanner(System.in);
+	        
+	        int A, B, C, x, y, size = 30;
+	        
+	        System.out.println("Digite os coeficientes da função -> f(x)=Ax²+Bx+C");
 		System.out.print("A: ");
 		A = t.nextInt();
-
+	
 		System.out.print("B: ");
 		B = t.nextInt();
-
+	
 		System.out.print("C: ");
 		C = t.nextInt();
-    
-        for(y = size; y >= -size; y--){
+	    
+	        for(y = size; y >= -size; y--){
 			for(x = -size; x <= size; x++){
 				if(y == 0 && x == size){
 					System.out.print("> X");
@@ -38,5 +38,5 @@ public class Main {
 			}
 			System.out.print("\n");
 		}
-    }
+	}
 }
