@@ -1,3 +1,4 @@
+// Pensei em fazer uma representação gráfica (bem limitada) de funções do 1º e do 2º graus. Basta indicar os valores dos coeficientes.
 import java.util.Scanner;
 
 public class Main {
