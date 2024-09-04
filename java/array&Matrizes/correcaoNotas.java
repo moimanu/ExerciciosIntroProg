@@ -32,7 +32,7 @@ public class Main {
         System.out.println("Nota do Aluno3: " + aluno[2]);
         
         for(int i = 0; i < 3; i++){
-            if(aluno[i] > 6){
+            if(aluno[i] >= 6){
                 acimaMedia++;
             }
         }
