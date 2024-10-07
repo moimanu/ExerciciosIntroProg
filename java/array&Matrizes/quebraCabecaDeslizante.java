@@ -1,11 +1,9 @@
-package quebracabecadeslizante;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class QuebraCabecaDeslizante {
+public class Main {
     
     public static int printarMatriz(int[][] matriz) {
         for(int i = 0; i < 5; i++){
@@ -25,8 +23,14 @@ public class QuebraCabecaDeslizante {
         return 0;
     }
     
-    public static void perguntarNumero(){
-        System.out.print("Qual numero alterar? ");
+    public static void perguntarNumero(boolean logico){
+        
+        if(logico == true){
+            System.out.print("Inválido! Tente outro numero: ");
+        } else {
+            System.out.print("Qual numero alterar? ");
+        }
+        
     }
 
     public static void main(String[] args) {
@@ -61,7 +65,8 @@ public class QuebraCabecaDeslizante {
         
         //Interagindo com o usuário até que a ordem esteja certa:
         boolean logico = true;
-        
+        boolean invalido = false;
+
         do{
             /* 
             *    O logico comeca "false" para, se algum número estiver na ordem 
@@ -71,18 +76,21 @@ public class QuebraCabecaDeslizante {
             //logico = false;
             
             printarMatriz(matriz);
-            perguntarNumero();
+            perguntarNumero(invalido);
         
             //Entrada:
             int entrada = t.nextInt();
-            boolean trocou = true;
             
+            boolean trocou = true;
+            System.out.println();
+
             //Alterando matriz:
             for(int i = 0; i < 5; i++){
                 for(int j = 0; j < 5; j++){
                     
                     //Conferindo se está no espaço vazio:
                     if(matriz[i][j] == 9 && trocou == true){
+                        invalido = false;
                         
                         if(matriz[i+1][j] == entrada){ //Conferindo baixo
                             matriz[i][j] = entrada;
@@ -109,7 +117,7 @@ public class QuebraCabecaDeslizante {
                         } else
                             
                         {
-                            System.out.println("Tente outro numero...");
+                            invalido = true;
                         }
                         
                     }
