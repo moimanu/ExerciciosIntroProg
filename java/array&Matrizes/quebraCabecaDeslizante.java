@@ -1,142 +1,113 @@
+package rachaCuca;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Main {
+public class RachaCuca {
     
-    public static int printarMatriz(int[][] matriz) {
+    public static void preencherMatriz(int[][] matriz, int contador){
+        //Preenchendo a matriz (laterais com "0" e o miolo ordenado):
         for(int i = 0; i < 5; i++){
             for(int j = 0; j < 5; j++){
-                if(matriz[i][j] != 0){
-                    if(matriz[i][j] == 9){
-                        System.out.print("  ");
-                    } else {
-                        System.out.print(matriz[i][j] + " ");
-                    }
-                }
-            }
-            if(i > 0 && i < 4){
-                System.out.println();
-            }
-        }
-        return 0;
-    }
-    
-    public static void perguntarNumero(boolean logico){
-        
-        if(logico == true){
-            System.out.print("Inválido! Tente outro numero: ");
-        } else {
-            System.out.print("Qual numero alterar? ");
-        }
-        
-    }
-
-    public static void main(String[] args) {
-        
-        Scanner t = new Scanner(System.in);
-        
-        //Criando matriz para o jogo:
-        int matriz[][] = new int[5][5];
-        
-        //Preenchendo a matriz de maneira aleatória:
-        Random random = new Random();
-        
-        ArrayList<Integer> lista = new ArrayList<>(Arrays.asList(1,2,3,4,5,6,7,8,9));
-        
-        int contador = 1;
-        for(int i = 0; i < 5; i++){
-            for(int j = 0; j < 5; j++){
-                
                 if(i == 0 || i == 4 || j == 0 || j == 4){
                     matriz[i][j] = 0;
                 } else {
-                    int valor;
-                    do{
-                        valor = random.nextInt(lista.size());
-                    } while(contador == valor);
-                    
-                    matriz[i][j] = lista.get(valor);
-                    lista.remove(valor);
+                    matriz[i][j] = contador;
+                    contador++;
                 }
             }
         }
+    }
+    
+    public static ArrayList conferirAlteracoesPossiveis(int[][] matriz){
         
-        //Interagindo com o usuário até que a ordem esteja certa:
-        boolean logico = true;
-        boolean invalido = false;
-
-        do{
-            /* 
-            *    O logico comeca "false" para, se algum número estiver na ordem 
-            *    errada, torná-lo verdadeiro e não sair do loop.
-            */
-            
-            //logico = false;
-            
-            printarMatriz(matriz);
-            perguntarNumero(invalido);
+        ArrayList<Integer> alteracoesPossiveis = new ArrayList<>(Arrays.asList());
         
-            //Entrada:
-            int entrada = t.nextInt();
-            
-            boolean trocou = true;
-            System.out.println();
-
-            //Alterando matriz:
-            for(int i = 0; i < 5; i++){
-                for(int j = 0; j < 5; j++){
-                    
-                    //Conferindo se está no espaço vazio:
-                    if(matriz[i][j] == 9 && trocou == true){
-                        invalido = false;
-                        
-                        if(matriz[i+1][j] == entrada){ //Conferindo baixo
-                            matriz[i][j] = entrada;
-                            matriz[i+1][j] = 9;
-                            trocou = false;
-                        } else
-                        
-                        if(matriz[i][j+1] == entrada){ //Conferindo direita
-                            matriz[i][j] = entrada;
-                            matriz[i][j+1] = 9;
-                            trocou = false;
-                        } else
-                        
-                        if(matriz[i-1][j] == entrada){ //Conferindo baixo
-                            matriz[i][j] = entrada;
-                            matriz[i-1][j] = 9;
-                            trocou = false;
-                        } else
-                        
-                        if(matriz[i][j-1] == entrada){ //Conferindo direita
-                            matriz[i][j] = entrada;
-                            matriz[i][j-1] = 9;
-                            trocou = false;
-                        } else
-                            
-                        {
-                            invalido = true;
-                        }
-                        
+        for(int i = 0; i < 5; i++){
+            for(int j = 0; j < 5; j++){
+                if(matriz[i][j] == 9){
+                    if(matriz[i-1][j] != 0){
+                        alteracoesPossiveis.add(matriz[i-1][j]);
+                    }
+                    if(matriz[i+1][j] != 0){
+                        alteracoesPossiveis.add(matriz[i+1][j]);
+                    }
+                    if(matriz[i][j-1] != 0){
+                        alteracoesPossiveis.add(matriz[i][j-1]);
+                    }
+                    if(matriz[i][j+1] != 0){
+                        alteracoesPossiveis.add(matriz[i][j+1]);
                     }
                 }
-            }        
-            
-            if(matriz[1][1] == 1 && matriz[1][2] == 2 && matriz[1][3] == 3 &&
-               matriz[2][1] == 4 && matriz[2][2] == 5 && matriz[2][3] == 6 &&
-               matriz[3][1] == 7 && matriz[3][2] == 8 && matriz[3][3] == 9){
+            }    
+        } 
+        return alteracoesPossiveis;
+    }
+    
+    public static void baguncarMatriz(int[][] matriz){
+        
+        Random random = new Random();
+        
+        ArrayList<Integer> alteracoesPossiveis = conferirAlteracoesPossiveis(matriz);
+        int indiceParaAlterar = random.nextInt(alteracoesPossiveis.size());
+        int numeroParaAlterar = alteracoesPossiveis.get(indiceParaAlterar);
+
+        for(int i = 0; i < 5; i++){
+            for(int j = 0; j < 5; j++){
+
+                if(matriz[i][j] == 9){
+                    matriz[i][j] = numeroParaAlterar;
+                }
                 
-                logico = false;
+                if(matriz[i][j] == numeroParaAlterar){
+                    matriz[i][j] = 9;
+                }
             }
-            
-            //Fim do jogo:
-            if(logico == false){
-                printarMatriz(matriz);
-                System.out.println("Parabens, voce conseguiu!");
+        }
+    }
+    
+    public static void imprimirMatriz(int[][] matriz){
+        for(int i = 0; i < 5; i++){
+            //Exceto as bordas do topo e de baixo:
+            if(i > 0 && i < 4){
+                for(int j = 0; j < 5; j++){
+                    //Exceto as bordas da esquerda e da direita:
+                    if(j > 0 && j < 4){
+                        if(matriz[i][j] == 9){
+                            System.out.println("  ");
+                        } else {
+                            System.out.print(matriz[i][j] + " ");
+                        }
+                    }
+                }
+                System.out.println();
             }
-            
-        }while(logico);
+        }
+    }
+    
+
+    
+    public static void main(String[] args) {
+        
+        //Configurando o projeto:
+        Scanner entrada = new Scanner(System.in);
+        int matrizJogo[][] = new int[5][5];
+        int contadorItemMatriz = 1;
+        
+        
+        //MODULO 1 - INICIANDO O JOGO
+        preencherMatriz(matrizJogo, contadorItemMatriz);
+        imprimirMatriz(matrizJogo);
+        baguncarMatriz(matrizJogo);
+        imprimirMatriz(matrizJogo);
+
+        
+        
+        //Modulo 2 - Gameplay
+        
+        //Modulo 3 - Finalizando o jogo
+        
     }
 }
