@@ -20,7 +20,7 @@ public class Teste {
             }
         }
     }
-    
+        
     public static ArrayList conferirAlteracoesPossiveis(int[][] matriz){
         
         ArrayList<Integer> alteracoesPossiveis = new ArrayList<>(Arrays.asList());
@@ -69,12 +69,35 @@ public class Teste {
         matriz[iSort][jSort] = 9;
     }
     
+    public static int escolherDificuldade(){
+        Scanner teclado = new Scanner(System.in);
+        
+        int entrada = teclado.nextInt();
+        
+        do{
+            switch (entrada) {
+                case 1 -> {
+                    return 20;
+                }
+                case 2 -> {
+                    return 30;
+                }
+                case 3 -> {
+                    return 40;
+                }
+                default -> {
+                }
+            }
+        } while(entrada < 1 || entrada > 3);
+        return 0;
+    }
+
     public static void baguncarMatriz(int[][] matriz){
         
         Random random = new Random();
         
         int contador = 0;
-        int dificuldade = 20;
+        int dificuldade = escolherDificuldade();
         
         do{
             ArrayList<Integer> alteracoesPossiveis = conferirAlteracoesPossiveis(matriz);
@@ -86,8 +109,6 @@ public class Teste {
             
         }while(contador < dificuldade);
     }
-    
-
     
     public static void imprimirMatriz(int[][] matriz){
         for(int i = 0; i < 5; i++){
@@ -113,7 +134,6 @@ public class Teste {
     public static void main(String[] args) {
         
         //Configurando o projeto:
-        Scanner entrada = new Scanner(System.in);
         int matrizJogo[][] = new int[5][5];
         int contadorItemMatriz = 1;
         
