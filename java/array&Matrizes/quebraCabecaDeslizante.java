@@ -1,11 +1,11 @@
-package rachaCuca;
+package teste;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class RachaCuca {
+public class Teste {
     
     public static void preencherMatriz(int[][] matriz, int contador){
         //Preenchendo a matriz (laterais com "0" e o miolo ordenado):
@@ -46,27 +46,48 @@ public class RachaCuca {
         return alteracoesPossiveis;
     }
     
+    public static void trocarPosicao(int[][] matriz, int numeroParaAlterar){
+    
+        int iVazio = 0;
+        int jVazio = 0;
+        int iSort = 0;
+        int jSort = 0;
+    
+        for(int i = 0; i < 5; i++){
+            for(int j = 0; j < 5; j++){
+                if(matriz[i][j] == 9){
+                    iVazio = i;
+                    jVazio = j;
+                } else if(matriz[i][j] == numeroParaAlterar){
+                    iSort = i;
+                    jSort = j;
+                }
+            }
+        }
+        
+        matriz[iVazio][jVazio] = numeroParaAlterar;
+        matriz[iSort][jSort] = 9;
+    }
+    
     public static void baguncarMatriz(int[][] matriz){
         
         Random random = new Random();
         
-        ArrayList<Integer> alteracoesPossiveis = conferirAlteracoesPossiveis(matriz);
-        int indiceParaAlterar = random.nextInt(alteracoesPossiveis.size());
-        int numeroParaAlterar = alteracoesPossiveis.get(indiceParaAlterar);
-
-        for(int i = 0; i < 5; i++){
-            for(int j = 0; j < 5; j++){
-
-                if(matriz[i][j] == 9){
-                    matriz[i][j] = numeroParaAlterar;
-                }
-                
-                if(matriz[i][j] == numeroParaAlterar){
-                    matriz[i][j] = 9;
-                }
-            }
-        }
+        int contador = 0;
+        int dificuldade = 20;
+        
+        do{
+            ArrayList<Integer> alteracoesPossiveis = conferirAlteracoesPossiveis(matriz);
+            int indiceParaAlterar = random.nextInt(alteracoesPossiveis.size());
+            int numeroParaAlterar = alteracoesPossiveis.get(indiceParaAlterar);
+            
+            trocarPosicao(matriz, numeroParaAlterar);
+            contador++;
+            
+        }while(contador < dificuldade);
     }
+    
+
     
     public static void imprimirMatriz(int[][] matriz){
         for(int i = 0; i < 5; i++){
@@ -76,7 +97,7 @@ public class RachaCuca {
                     //Exceto as bordas da esquerda e da direita:
                     if(j > 0 && j < 4){
                         if(matriz[i][j] == 9){
-                            System.out.println("  ");
+                            System.out.print("  ");
                         } else {
                             System.out.print(matriz[i][j] + " ");
                         }
