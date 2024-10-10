@@ -7,15 +7,17 @@ import java.util.Scanner;
 
 public class Teste {
     
-    public static void preencherMatriz(int[][] matriz, int contador){
+    public static void preencherMatriz(int[][] matriz){
+        int contadorItemMatriz = 1;
+
         //Preenchendo a matriz (laterais com "0" e o miolo ordenado):
         for(int i = 0; i < 5; i++){
             for(int j = 0; j < 5; j++){
                 if(i == 0 || i == 4 || j == 0 || j == 4){
                     matriz[i][j] = 0;
                 } else {
-                    matriz[i][j] = contador;
-                    contador++;
+                    matriz[i][j] = contadorItemMatriz;
+                    contadorItemMatriz++;
                 }
             }
         }
@@ -71,43 +73,51 @@ public class Teste {
     
     public static int escolherDificuldade(){
         Scanner teclado = new Scanner(System.in);
+        System.out.print("Digite o nivel de dificuldade para embaralhar, facil(1), medio(2) ou dificil(3): ");
         
-        int entrada = teclado.nextInt();
+        int entradaOpcao = teclado.nextInt();
+        int qntdAlteracoes = 0;
         
         do{
-            switch (entrada) {
-                case 1 -> {
-                    return 20;
+            
+            if(entradaOpcao >= 1 && entradaOpcao <= 3){
+                switch (entradaOpcao) {
+                    case 1 -> qntdAlteracoes = 20;
+                    case 2 -> qntdAlteracoes = 40;
+                    case 3 -> qntdAlteracoes = 80;
+                    default -> {
+                    }
                 }
-                case 2 -> {
-                    return 30;
-                }
-                case 3 -> {
-                    return 40;
-                }
-                default -> {
-                }
+            } else {
+                System.out.print("Opcao invalida. Escolha facil(1), medio(2) ou dificil(3): ");
+                entradaOpcao = teclado.nextInt();
             }
-        } while(entrada < 1 || entrada > 3);
-        return 0;
+            
+        } while(entradaOpcao < 1 || entradaOpcao > 3);
+        
+        return qntdAlteracoes;
     }
 
-    public static void baguncarMatriz(int[][] matriz){
-        
+    public static int escolherNumAleatorioPossivel(int[][] matriz){
         Random random = new Random();
+
+        ArrayList<Integer> alteracoesPossiveis = conferirAlteracoesPossiveis(matriz);
+        int indiceParaAlterar = random.nextInt(alteracoesPossiveis.size());
+        return alteracoesPossiveis.get(indiceParaAlterar);
+    }
+    
+    public static void baguncarMatriz(int[][] matriz){
         
         int contador = 0;
         int dificuldade = escolherDificuldade();
         
         do{
-            ArrayList<Integer> alteracoesPossiveis = conferirAlteracoesPossiveis(matriz);
-            int indiceParaAlterar = random.nextInt(alteracoesPossiveis.size());
-            int numeroParaAlterar = alteracoesPossiveis.get(indiceParaAlterar);
-            
-            trocarPosicao(matriz, numeroParaAlterar);
+            trocarPosicao(matriz, escolherNumAleatorioPossivel(matriz));
             contador++;
-            
         }while(contador < dificuldade);
+        
+        System.out.println();
+        System.out.println("Tabuleiro embaralhado. Vamos comecar o jogo!");
     }
     
     public static void imprimirMatriz(int[][] matriz){
@@ -128,27 +138,39 @@ public class Teste {
             }
         }
     }
-    
 
-    
+    public static boolean conferirOrdem(int[][] matriz){
+        
+        return matriz[1][1] == 1 && matriz[1][2] == 2 && matriz[1][3] == 3 &&
+                matriz[2][1] == 4 && matriz[2][2] == 5 && matriz[2][3] == 6 &&
+                matriz[3][1] == 7 && matriz[3][2] == 8;
+
+    }
+            
     public static void main(String[] args) {
         
         //Configurando o projeto:
-        int matrizJogo[][] = new int[5][5];
-        int contadorItemMatriz = 1;
-        
+        int matrizJogo[][] = new int[5][5];        
+        Scanner teclado = new Scanner(System.in);
         
         //MODULO 1 - INICIANDO O JOGO
-        preencherMatriz(matrizJogo, contadorItemMatriz);
+        preencherMatriz(matrizJogo);
         imprimirMatriz(matrizJogo);
+        System.out.println("Tabuleiro ordenado!");
         baguncarMatriz(matrizJogo);
-        imprimirMatriz(matrizJogo);
-
         
+        //MODULO 2 - GAMEPLAY
         
-        //Modulo 2 - Gameplay
+        do{
+            imprimirMatriz(matrizJogo);
+            System.out.print("Digite um comando ou numero da peca que quer mover: ");
+            
+            int entradaTentativa = teclado.nextInt();
+            trocarPosicao(matrizJogo, entradaTentativa);
+            
+        }while(!conferirOrdem(matrizJogo));
         
-        //Modulo 3 - Finalizando o jogo
+        //MODULO 3 - FINALIZANDO O JOGO
         
     }
 }
