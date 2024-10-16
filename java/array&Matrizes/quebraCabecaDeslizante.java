@@ -1,11 +1,11 @@
-package teste;
+package rachaCuca;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Teste {
+public class RachaCuca {
     
     public static void preencherMatriz(int[][] matriz){
         int contadorItemMatriz = 1;
@@ -48,27 +48,37 @@ public class Teste {
         return alteracoesPossiveis;
     }
     
-    public static void trocarPosicao(int[][] matriz, int numeroParaAlterar){
+    public static boolean trocarPosicao(int[][] matriz, int numeroParaAlterar){
     
-        int iVazio = 0;
-        int jVazio = 0;
-        int iSort = 0;
-        int jSort = 0;
-    
-        for(int i = 0; i < 5; i++){
-            for(int j = 0; j < 5; j++){
-                if(matriz[i][j] == 9){
-                    iVazio = i;
-                    jVazio = j;
-                } else if(matriz[i][j] == numeroParaAlterar){
-                    iSort = i;
-                    jSort = j;
+        ArrayList<Integer> alteracoesPossiveis = conferirAlteracoesPossiveis(matriz);
+        
+        for(int n = 0; n < alteracoesPossiveis.size(); n++){
+            if(numeroParaAlterar == alteracoesPossiveis.get(n)){
+            
+                int iVazio = 0;
+                int jVazio = 0;
+                int iSort = 0;
+                int jSort = 0;
+
+                for(int i = 0; i < 5; i++){
+                    for(int j = 0; j < 5; j++){
+                        if(matriz[i][j] == 9){
+                            iVazio = i;
+                            jVazio = j;
+                        } else if(matriz[i][j] == numeroParaAlterar){
+                            iSort = i;
+                            jSort = j;
+                        }
+                    }
                 }
+
+                matriz[iVazio][jVazio] = numeroParaAlterar;
+                matriz[iSort][jSort] = 9;
+                
+                return true;
             }
         }
-        
-        matriz[iVazio][jVazio] = numeroParaAlterar;
-        matriz[iSort][jSort] = 9;
+        return false;
     }
     
     public static int escolherDificuldade(){
@@ -120,7 +130,7 @@ public class Teste {
         System.out.println("Tabuleiro embaralhado. Vamos comecar o jogo!");
     }
     
-    public static void imprimirMatriz(int[][] matriz){
+    public static void imprimirMatriz(int[][] matriz, boolean primeiraVezImprimindo){
         for(int i = 0; i < 5; i++){
             //Exceto as bordas do topo e de baixo:
             if(i > 0 && i < 4){
@@ -136,6 +146,9 @@ public class Teste {
                 }
                 System.out.println();
             }
+        }
+        if(primeiraVezImprimindo){
+            System.out.println("Tabuleiro ordenado!");
         }
     }
 
@@ -155,22 +168,32 @@ public class Teste {
         
         //MODULO 1 - INICIANDO O JOGO
         preencherMatriz(matrizJogo);
-        imprimirMatriz(matrizJogo);
-        System.out.println("Tabuleiro ordenado!");
+        imprimirMatriz(matrizJogo, true);
         baguncarMatriz(matrizJogo);
         
         //MODULO 2 - GAMEPLAY
         
-        do{
-            imprimirMatriz(matrizJogo);
-            System.out.print("Digite um comando ou numero da peca que quer mover: ");
-            
-            int entradaTentativa = teclado.nextInt();
-            trocarPosicao(matrizJogo, entradaTentativa);
-            
-        }while(!conferirOrdem(matrizJogo));
+        
+        boolean logico = true;
+        
+        while(!conferirOrdem(matrizJogo)){
+            if(logico){
+                imprimirMatriz(matrizJogo, false);
+                System.out.print("Digite um comando ou numero da peca que quer mover: ");
+                int entradaTentativa = teclado.nextInt();
+                System.out.println();
+                logico = trocarPosicao(matrizJogo, entradaTentativa);
+            } else {
+                System.out.println("Invalido...");
+                System.out.print("Digite um comando ou numero da peca que quer mover: ");
+                int entradaTentativa = teclado.nextInt();
+                System.out.println();
+                logico = trocarPosicao(matrizJogo, entradaTentativa);
+            }
+        }
         
         //MODULO 3 - FINALIZANDO O JOGO
-        
+        imprimirMatriz(matrizJogo, false);
+        System.out.println("Parabens, voce venceu!");
     }
 }
