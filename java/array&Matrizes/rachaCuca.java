@@ -11,27 +11,6 @@ public class RachaCucaDefinitivo {
         
         //Funcoes basicas
     
-            public static void imprimirInstrucoes(){
-                System.out.println("x - - - - - - - - - - - - - - - - - - - - - - - - - - - - - x");
-                System.out.println("|                                                           |");
-                System.out.println("|   INSTRUCOES:                                             |");
-                System.out.println("|                                                           |");
-                System.out.println("|   - Como jogar: O jogo racha cuca possui um tabuleiro     |");
-                System.out.println("|   com 8 pecas, as quais serao embaralhadas de acordo      |");
-                System.out.println("|   com o nivel de dificuldade escolhido. Voce devera       |");
-                System.out.println("|   alterar as posicoes das pecas (trocando com o espaco    |");
-                System.out.println("|   vazio) ate que a ordem esteja correta.                  |");
-                System.out.println("|                                                           |");
-                System.out.println("|   - Objetivo: O jogo tem por objetivo ordenar             |");
-                System.out.println("|   todas as pecas, do '1' ao '8', da esquerda              |");
-                System.out.println("|   para a direita.                                         |");
-                System.out.println("|                                                           |");            
-                System.out.println("|   Para sair durante o jogo, basta digitar 0.              |");            
-                System.out.println("|                                                           |");
-                System.out.println("x - - - - - - - - - - - - - - - - - - - - - - - - - - - - - x");
-                System.out.println();
-            }
-
             public static int[][] criarTabuleiroOrdenado(){
                 
                 int tabuleiro[][] = {
@@ -237,7 +216,28 @@ public class RachaCucaDefinitivo {
     //MENU
         
         //Funcoes basicas
-        
+            
+            public static void imprimirInstrucoes(){
+                System.out.println("x - - - - - - - - - - - - - - - - - - - - - - - - - - - - - x");
+                System.out.println("|                                                           |");
+                System.out.println("|   INSTRUCOES:                                             |");
+                System.out.println("|                                                           |");
+                System.out.println("|   - Como jogar: O jogo racha cuca possui um tabuleiro     |");
+                System.out.println("|   com 8 pecas, as quais serao embaralhadas de acordo      |");
+                System.out.println("|   com o nivel de dificuldade escolhido. Voce devera       |");
+                System.out.println("|   alterar as posicoes das pecas (trocando com o espaco    |");
+                System.out.println("|   vazio) ate que a ordem esteja correta.                  |");
+                System.out.println("|                                                           |");
+                System.out.println("|   - Objetivo: O jogo tem por objetivo ordenar             |");
+                System.out.println("|   todas as pecas, do '1' ao '8', da esquerda              |");
+                System.out.println("|   para a direita.                                         |");
+                System.out.println("|                                                           |");            
+                System.out.println("|   Para sair durante o jogo, basta digitar 0.              |");            
+                System.out.println("|                                                           |");
+                System.out.println("x - - - - - - - - - - - - - - - - - - - - - - - - - - - - - x");
+                System.out.println();
+            }
+
             public static int perguntar(String msg){
                 Scanner teclado = new Scanner(System.in);
                 System.out.print(msg);
