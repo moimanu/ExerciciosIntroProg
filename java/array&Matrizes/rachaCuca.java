@@ -161,7 +161,7 @@ public class RachaCucaDefinitivo {
                 System.out.println();
             }
 
-            public static void interagir(int matriz[][]){
+            public static void gameplay(int matriz[][]){
                 
                 Scanner t = new Scanner(System.in);
 
@@ -197,7 +197,7 @@ public class RachaCucaDefinitivo {
 
         //Funcao principal
         
-            public static void gameplay(){
+            public static void fluxoJogo(){
 
                 //MODULO 1 - CRIANDO TABULEIRO
                 int tabuleiro[][] = criarTabuleiroOrdenado();
@@ -210,7 +210,7 @@ public class RachaCucaDefinitivo {
                 System.out.println();
 
                 //MODULO 3 - JOGANDO
-                interagir(tabuleiro);
+                gameplay(tabuleiro);
             }
 
     //MENU
@@ -270,7 +270,7 @@ public class RachaCucaDefinitivo {
                                 finalizarJogo();
                             }           
                             case 1 -> {
-                                gameplay();
+                                fluxoJogo();
                                 entradaOpcao = perguntar(msg2);
                             }
                             case 2 -> {
