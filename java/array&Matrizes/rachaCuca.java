@@ -183,7 +183,9 @@ public class RachaCucaDefinitivo {
                     }
 
                     while(!trocarPosicao(matriz, entrada)){
-                        System.out.print("Digite outro numero: ");
+                        System.out.println();
+                        System.out.println("Nao e possivel mover a peca " + entrada + ".");
+                        System.out.print("Digite um comando ou numero da peca que quer mover: ");
                         entrada = t.nextInt();
                     }
                     System.out.println();
@@ -191,7 +193,7 @@ public class RachaCucaDefinitivo {
                 }
                 
                 imprimirTabuleiro(matriz);
-                System.out.println("Parabens! Voce venceu!");
+                System.out.println("Parabens! Voce completou o quebra-cabecas com " + qntdJogadas + " movimentos.");
                 System.out.println();
             }
 
