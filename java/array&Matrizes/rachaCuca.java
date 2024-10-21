@@ -266,32 +266,28 @@ public class RachaCucaDefinitivo {
                 int entradaOpcao = perguntar(msg1);
 
                 do{
-                    if(entradaOpcao >= 0 && entradaOpcao <= 2){
-                        switch (entradaOpcao) {
-                            case 0 -> {
-                                finalizarJogo();
-                            }           
-                            case 1 -> {
-                                fluxoJogo();
-                                entradaOpcao = perguntar(msg2);
-                            }
-                            case 2 -> {
-                                imprimirInstrucoes();
-                                entradaOpcao = perguntar(msg3);
+                    switch (entradaOpcao) {
+                        case 0 -> {
+                            finalizarJogo();
+                        }           
+                        case 1 -> {
+                            fluxoJogo();
+                            entradaOpcao = perguntar(msg2);
+                        }
+                        case 2 -> {
+                            imprimirInstrucoes();
+                            entradaOpcao = perguntar(msg3);
 
-                                while(entradaOpcao < 0 || entradaOpcao > 1) {
-                                    entradaOpcao = perguntar(msg4);
-                                }
-                            }
-                            default -> {
+                            while(entradaOpcao < 0 || entradaOpcao > 1) {
+                                entradaOpcao = perguntar(msg4);
                             }
                         }
-                    } 
+                    }
 
                     while(entradaOpcao < 0 || entradaOpcao > 2) {
                         entradaOpcao = perguntar(msg5);
                     }
-                } while(entradaOpcao >= 0 && entradaOpcao <= 2);
+                } while(true);
             }
             
     //PROCESSAMENTO DO JOGO
