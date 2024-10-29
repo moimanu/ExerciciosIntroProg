@@ -2,13 +2,10 @@ Resumo do trabalho:
 
 Visto que o jogo deve oferecer três possibilidades de interação, tais como "sair", "jogar" e "ver instruções", foi necessário criar uma função "menu()" que garante o que vai acontecer no início da execução e após o bloco de código da opção escolhida chegar ao fim, em um loop infinito, até que se escolha sair. 
 
-Portanto, as opções se tratam de outras funções que realizam um conjunto de instruções específicas, sendo elas "finalizarJogo()", "gameplay()" e "instrucoes()", as quais são "gerenciadas" por essa função macro denominada "menu()".
+Portanto, as opções se tratam de outras funções que realizam um conjunto de instruções específicas, sendo elas "finalizarJogo()", "fluxoJogo()" e "instrucoes()", as quais são "gerenciadas" por essa função macro denominada "menu()".
 
-Para realizar as tarefas de "finalizar o jogo" e "imprimir as instruções" foi simples, bastando algumas linhas de código. No entanto, o mesmo não se pode dizer para a função "gameplay()", que abarca uma complexidade muito maior e uma necessidade
+Para realizar as tarefas de "finalizar o jogo" e "imprimir as instruções" foi simples, bastando algumas linhas de código. No entanto, o mesmo não se pode dizer para a função "fluxoJogo()", que abarca uma complexidade muito maior.
 
-
-
-ENTENDENDO A FUNÇÃO MENU
-
+Na função “fluxoJogo()”, foi necessário criar um fluxo de acontecimentos e interações que respeitem a seguinte ordem: "CRIANDO TABULEIRO" - "EMABARALHANDO TABULEIRO" - "JOGANDO". Esses passos estão sendo executados com o auxílio de algumas funções, tais como "criarTabuleiroOrdenado()", "imprimirTabuleiro()", "embaralharTabuleiro()" e "gameplay()", e o método "System.out.println()" para interagir com o usuário. De todas essas funções, a "gameplay()" não é tão intuitiva quanto as demais e, por isso, explicarei brevemente desde já: se trata de um loop "while" que, a medida que o usuário conseguir realizar uma troca de peças, atualiza um contador de quantidade de jogadas até que a ordem das peças esteja correta. Para isso foram utilizadas outras funções.
 
 
