@@ -10,7 +10,7 @@ O jogo a ser representado se chama "Racha Cuca". Nele, temos uma matriz 3x3 de p
 
 //
 
-Resumo do trabalho:
+Visão Geral do Programa
 
 Visto que o jogo deve oferecer três possibilidades de interação, tais como "sair", "jogar" e "ver instruções", foi necessário criar uma função "menu()" que garante o que vai acontecer no início da execução e após o bloco de código da opção escolhida chegar ao fim, em um loop infinito, até que se escolha sair. 
 
@@ -25,4 +25,3 @@ De maneira resumida, o usuário escolhe o que fazer e realiza tal tarefa, a qual
 APRESENTAR FLUXOGRAMA
 
 ////
-
