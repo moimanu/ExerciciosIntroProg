@@ -25,3 +25,9 @@ De maneira resumida, o usuário escolhe o que fazer e realiza tal tarefa, a qual
 APRESENTAR FLUXOGRAMA
 
 ////
+
+CONTINUAR O ARTIGO DO GOOGLE
+
+3. fluxoJogo(): essa função inicia uma sequência de 3 passos que determinam o fluxo dos acontecimentos do jogo, os quais são: "CRIANDO TABULEIRO", "EMBARALHANDO TABULEIRO" e "JOGANDO". Será explicado com mais detalhes posteriormente. ############### 
+
+4. imprimirInstrucoes(): essa função apenas utiliza o método "System.out.println()" para exibir as instruções na tela, a qual foi utilizada uma abaixo da outra para facilitar na "formatação".
