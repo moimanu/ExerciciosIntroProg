@@ -201,17 +201,17 @@ public class RachaCucaDefinitivo {
         
             public static void fluxoJogo(){
 
-                //PASSO 1 - CRIANDO TABULEIRO
+                //MODULO 1 - CRIANDO TABULEIRO
                 int tabuleiro[][] = criarTabuleiroOrdenado();
                 imprimirTabuleiro(tabuleiro);
                 System.out.println("Tabuleiro ordenado!");
 
-                //PASSO 2 - EMBARALHANDO TABULEIRO
+                //MODULO 2 - EMBARALHANDO TABULEIRO
                 embaralharTabuleiro(tabuleiro); //Altera por referencia
                 System.out.println("Tabuleiro embaralhado! Vamos comecar o jogo!");
                 System.out.println();
 
-                //PASSO 3 - JOGANDO
+                //MODULO 3 - JOGANDO
                 gameplay(tabuleiro);
             }
 
