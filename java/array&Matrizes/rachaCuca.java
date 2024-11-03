@@ -1,11 +1,11 @@
-package rachacucadefinitivo;
+package trabalhoRachaCuca;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class RachaCucaDefinitivo {
+public class TrabalhoRachaCuca {
     
     //GAMEPLAY
         
@@ -201,17 +201,17 @@ public class RachaCucaDefinitivo {
         
             public static void fluxoJogo(){
 
-                //MODULO 1 - CRIANDO TABULEIRO
+                //PASSO 1 - CRIANDO TABULEIRO
                 int tabuleiro[][] = criarTabuleiroOrdenado();
                 imprimirTabuleiro(tabuleiro);
                 System.out.println("Tabuleiro ordenado!");
 
-                //MODULO 2 - EMBARALHANDO TABULEIRO
+                //PASSO 2 - EMBARALHANDO TABULEIRO
                 embaralharTabuleiro(tabuleiro); //Altera por referencia
                 System.out.println("Tabuleiro embaralhado! Vamos comecar o jogo!");
                 System.out.println();
 
-                //MODULO 3 - JOGANDO
+                //PASSO 3 - JOGANDO
                 gameplay(tabuleiro);
             }
 
