@@ -56,22 +56,23 @@ Estados do MENU:
 
 Momentos: 
 
-	1°) Enquanto existir menos de 2 times ou 0 partidas:
+	1°) Enquanto existir menos de 2 times:
 
 		1 - Cadastrar time;	
 
-	2°) Há dois times:
+	2°) Há 2 times ou menos que 20:
 
 		1 - Cadastrar time;
 		2 - Cadastrar partida;
 
 	3°) Já houve uma partida:
 
+		xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 1 - Cadastrar time;
 		1 - Cadastrar outra partida;
 		2 - Ver primeiro colocado;
 		3 - Ver classificados libertadores;
 		4 - Ver zona de rebaixamento;
 
+	4°) Já tem 20 times:
 
 
-		
