@@ -1,0 +1,83 @@
+TP2
+
+GLOBAL:
+	ArrayList<Companhias> companhiasLivres = new ArrayList<>();
+	ArrayList<Propriedades> propriedadesLivres = new ArrayList<>();
+
+Funções:
+
+	preencherArrayDePropriedades();
+	preencherArrayDeCompanhias();
+	main();
+
+Jogador:
+
+	String nome;
+	int i;
+	int j;
+	int posição [i][j];
+	float saldo = 1500.0;
+	ArrayList<Propriedades> possesPropriedade = new ArrayList<>();
+	ArrayList<Companhias> possesCompanhias = new ArrayList<>();	
+	
+	pagarAluguel();
+	atualizarPosicao();
+	receberBonusPorVolta();
+	lancarDados();
+	comprarPropriedade();
+	
+Propriedade:
+
+	String nome;
+	float valorAluguel;
+	float valorCompra;	
+	int numeroDeCasas;
+	Jogador dono;
+	
+	melhorarPropriedade();
+	
+Companhias:
+
+	String nome;
+	float valorAluguel;
+	float valorCompra;	
+	Jogador dono;		
+
+___________________________________________________________________________________________
+
+Posições:
+
+[0,0][0,1][0,2][0,3]
+[1,0]          [1,3]
+[2,0]          [2,3]
+[3,0][3,1][3,2][3,3]
+
+Como atualizar a posição?
+
+atualizarPosicao(int qntdPassos, int linha, int coluna){
+
+	int i = linha;
+	int j = coluna;
+
+	for(int passos = 0; passos <= qntdPassos; passos++){
+
+		if(i < 3 && j == 3){ //Início = [0,3]
+			i++;
+		}
+
+		if(i == 3 && j > 0){ //Ponta 1 = [3,3]
+			j--;
+		}
+
+		if(i > 0 && j == 0){ //Ponta 2 = [3,0]
+			i--;
+		}
+
+		if(i == 0 && j < 3){ //Ponta 3 = [0,0]
+			j++;
+		}
+
+	}	
+
+	return int posicao[i][j];
+}
